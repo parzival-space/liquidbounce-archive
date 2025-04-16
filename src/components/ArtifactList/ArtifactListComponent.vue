@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onBeforeMount, onMounted, ref } from 'vue'
 import {
   getBranches,
   getBuildsOfBranch, lbVersionSorter,
@@ -15,23 +15,24 @@ const props = defineProps({
 })
 
 const artifacts = ref([] as LiquidBounceBuild[]);
-
 onMounted(async () => {
   const lbBranches = await getBranches();
+  const lbBuildes: LiquidBounceBuild[] = [];
 
   for (const branch of lbBranches) {
     console.log(`Fetching artifacts for branch: ${branch}`);
-    artifacts.value.push(...await getBuildsOfBranch(branch, props.onlyReleases));
+    lbBuildes.push(...await getBuildsOfBranch(branch, props.onlyReleases));
   }
 
-  // sort
-  artifacts.value.sort(lbVersionSorter);
-});
+  lbBuildes.sort(lbVersionSorter).reverse();
+  artifacts.value = lbBuildes;
+})
+
 </script>
 
 <template>
   <ol v-if="artifacts.length !== 0" class="divide-y divide-gray-200 dark:divide-gray-700 max-w-screen-md mx-auto">
-    <li v-for="artifact in artifacts.reverse()" v-bind:key="artifact.build_id" class="pb-3 pt-3 sm:pt-4 sm:pb-4">
+    <li v-for="artifact in artifacts" v-bind:key="artifact.commit_id" class="pb-3 pt-3 sm:pt-4 sm:pb-4">
       <div class="flex items-center space-x-4">
         <div class="flex-1 min-w-0">
           <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
