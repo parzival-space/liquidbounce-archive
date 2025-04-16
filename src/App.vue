@@ -2,12 +2,17 @@
 import '@/assets/main.css'
 import ArtifactListComponent from '@/components/ArtifactList/ArtifactListComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
+
+const repoUrl = "https://github.com/parzival-space/liquidbounce-archive";
 </script>
 
 <template>
   <header>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
   </header>
+
+  <!-- GitHub Fork Ribbon -->
+  <a class="github-fork-ribbon" href="https://github.com/parzival-space/liquidbounce-archive" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
 
   <div class="container max-w-screen-lg mx-auto mt-15">
     <img
@@ -36,5 +41,5 @@ import FooterComponent from '@/components/FooterComponent.vue'
 </template>
 
 <style scoped>
-
+.github-fork-ribbon:before { background-color: #333; }
 </style>
