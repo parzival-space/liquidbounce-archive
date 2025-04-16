@@ -1,85 +1,40 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import '@/assets/main.css'
+import ArtifactListComponent from '@/components/ArtifactList/ArtifactListComponent.vue'
+import FooterComponent from '@/components/FooterComponent.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
   </header>
 
-  <RouterView />
+  <div class="container max-w-screen-lg mx-auto mt-15">
+    <img
+      class="max-w-sm mx-auto mb-15"
+      alt="LiquidBounce Logo"
+      src="https://raw.githubusercontent.com/CCBlueX/LiquidCloud/master/LiquidBounce/liquidbounceLogo.svg"
+    />
+
+    <div class="container mt-5 mb-5 space-y-2">
+      <h1 class="text-3xl text-center">LiquidBounce Archive</h1>
+      <p class="text-xl whitespace-pre-line overflow-auto">
+        This is a list of all public LiquidBounce build and release artifacts.
+        You can download them by clicking the "Download" button below.
+      </p>
+      <p class="text-xl whitespace-pre-line overflow-auto">
+        LiquidBounce Archive is not affiliated with LiquidBounce or CCBlueX in any way.
+        No files are redistributed through this website. When you click the download button, you
+        will be redirected to the official LiquidBounce website.
+      </p>
+    </div>
+
+    <ArtifactListComponent />
+
+    <FooterComponent />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
